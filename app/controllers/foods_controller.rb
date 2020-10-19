@@ -8,6 +8,8 @@ class FoodsController < ApplicationController
 
     json = JSON.parse(response.body, symbolize_names: true)
 
-    @foods = json[:foods]
+    @foods = json[:foods].map do |food|
+      Food.new(food)
+    end 
   end
 end
